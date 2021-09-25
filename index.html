@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>EdiTTS</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156162365-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-156162365-1');
+    </script>
+</head>
+
+<body>
+
+    <!-- Title -->
+    <div class="container" style="max-width:1200px;">
+        <div class='row mt-5 mb-3'>
+            <div class='col text-center'>
+                <p class="h2 font-weight-normal">EdiTTS: User Editable Text-to-Speech</p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="max-width:1100px;">
+        <!-- authors -->
+        <div class='row text-center h5 font-weight-normal pl-0 pr-0 mb-4' style="font-style:italic">
+            <a class="col-md-3 col-xs-3 text-dark"><span></span></a>
+            <a class="col-md-3 col-xs-3 text-dark"><span>Jaesung Tae</span><br>
+                <span class="col-md-12 col-xs-12 text-dark font-weight-light">Yale University</span>
+            </a>
+            <a class="col-md-3 col-xs-3 text-dark"><span>Hyeongju Kim</span><br>
+                <span class="col-md-12 col-xs-12 text-dark font-weight-light">Neosapience, Inc.</span>
+            </a>
+            <a class="col-md-3 col-xs-3 text-dark"><span></span></a>
+        </div>
+
+
+        <!-- Paper section -->
+        <div class='row text-center'>
+            <!-- thumbnail of paper on left side of abstract -->
+            <div class="col" style="margin-top:20px">
+                <!-- <a class="h5" href="https://github.com/ANLGBOY/WaveNODE/" style="margin-left:10px"> -->
+                <a class="h5" style="margin-left:10px">
+                    <span>[arXiv]</span>
+                </a>
+                <a class="h5" style="margin-left:10px">
+                    <span>[Code]</span>
+                </a>
+            </div>
+        </div>
+        <div>
+            <hr>
+            <div class='col text-center'>
+                <p class='h2 font-weight-bold '>Abstract</p>
+
+                <div class="container" style="max-width:850px; margin-top: 20px; margin-bottom: 40px">
+                    <p style='line-height:1.3; font-size:large; text-align: justify'>
+                        We present EdiTTS, a novel speech editing methodology based on score-based generative modeling
+                        for text-to-speech synthesis. EdiTTS allows targeted, granular editing of audio segments, both
+                        in terms of content and pitch. Compared to conventional speech editing methods, which employ
+                        simple concatenation or resampling-based algorithms, EdiTTS estimates scores to gradually
+                        denoise Gaussian priors into realistic mel-spectrograms. Specifically, we apply coarse yet
+                        deliberate perturbations in the Gaussian prior space to induce desired behavior from the
+                        diffusion model, while applying masks and softening kernels to ensure that edits are only
+                        applied to the target region. Listening tests demonstrate that EdiTTS is capable of reliably
+                        generating natural-sounding audio while satisfying user-imposed requirements.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <hr>
+
+        <!-- Audio Samples -->
+        <div class='col' style='padding-left: 35px;padding-right: 35px'>
+            <div class='row text-center'>
+                <div class='col'>
+                    <p class='h2 font-weight-bold '>Audio Examples</p>
+                </div>
+            </div>
+
+            <div class='row' style='margin-top: 60px;margin-bottom: 20px'>
+                <p class='h3 font-weight-normal'>1. Pitch Shift </p>
+            </div>
+
+            <div style='display: flex; align-items: center; margin-bottom: 50px'>
+                <div style='flex: 1;'>
+                    <p class='h4'>Example 1</p>
+                    <div class='row' style='text-align: center; margin-bottom: 10px; height: 100px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Input
+                        </div>
+                        <div class='item' style='align-self: center; text-align: center; width: 270px;'>
+                            In <span style="font-style:italic;color: #ff4f4f">the face of impediments confessedly discouraging</span>
+                        </div>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_1_gradtts.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            FastPitch (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_1_FastPitch-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            FastPitch (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_1_FastPitch-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-shift (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_1_baseline-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-shift (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_1_baseline-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-P (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_1_EdiTTS-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-P (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_1_EdiTTS-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                </div>
+
+                <div style='flex: 1;'>
+                    <p class='h4'>Example 2</p>
+                    <div class='row' style='text-align: center; margin-bottom: 10px; height: 100px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Input
+                        </div>
+                        <div class='item' style='align-self: center; text-align: center; width: 270px;'>
+                            In the nutrition of <span style="font-style:italic;color: #ff4f4f">the animal the most essential and</span> characteristic part of the food supply is derived from vegetable
+                        </div>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_5_gradtts.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            FastPitch (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_5_FastPitch-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            FastPitch (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_5_FastPitch-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-shift (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_5_baseline-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-shift (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_5_baseline-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-P (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_5_EdiTTS-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-P (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_5_baseline-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style='display: flex; align-items: center; margin-bottom: 50px'>
+                <div style='flex: 1;'>
+                    <p class='h4'>Example 3</p>
+                    <div class='row' style='text-align: center; margin-bottom: 10px; height: 70px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Input
+                        </div>
+                        <div class='item' style='align-self: center; text-align: center; width: 270px;'>
+                            <span style="font-style:italic;color: #ff4f4f">They agree that Hosty told</span> Revill
+                        </div>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_8_gradtts.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            FastPitch (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_8_FastPitch-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            FastPitch (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_8_FastPitch-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-shift (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_8_baseline-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-shift (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_8_baseline-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-P (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_8_EdiTTS-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-P (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_8_EdiTTS-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                </div>
+
+                <div style='flex: 1;'>
+                    <p class='h4'>Example 4</p>
+                    <div class='row' style='text-align: center; margin-bottom: 10px; height: 70px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Input
+                        </div>
+                        <div class='item' style='align-self: center; text-align: center; width: 270px;'>
+                            The second step we have taken in <span style="font-style:italic;color: #ff4f4f">the restoration of normal business enterprise</span>
+                        </div>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_18_gradtts.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            FastPitch (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_18_FastPitch-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            FastPitch (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_18_FastPitch-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-shift (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_18_baseline-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-shift (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_18_baseline-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+
+
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-P (up)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_18_EdiTTS-up.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-P (down)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/pitch/gen_18_EdiTTS-down.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class='row' style='margin-top: 60px;margin-bottom: 20px'>
+                <p class='h3 font-weight-normal'>2. Content Replacement </p><br>
+            </div>
+
+            <div style='display: flex; align-content: center;margin-bottom: 50px'>
+                <div style='flex: 1;'>
+                    <p class='h4'>Example 1</p>
+                    <div class='row' style='height: 40px; text-align: center; height: 80px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Source
+                        </div>
+                        <div class='item' style='align-self: center; padding-left: 5px; width: 270px'>
+                            Three others subsequently <span style='font-style: italic;color: #ff4f4f'>identified</span> Oswald from a photograph
+                        </div>
+                    </div>
+                    <div class='row' style='height: 40px; text-align: center; height: 80px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Target
+                        </div>
+                        <div class='item' style='align-self: center; padding-left: 5px; width: 270px'>
+                            Three others subsequently <span style='font-style: italic;color: #ff4f4f'>recognized</span> Oswald from a photograph
+                        </div>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS (source)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_68_1.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS (target)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_68_2.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-replacement
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_68_cat.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-T
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_68_edit.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                </div>
+                
+                <div style='flex: 1;'>
+                    <p class='h4'>Example 2</p>
+                    <div class='row' style='height: 40px; text-align: center; height: 80px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Source
+                        </div>
+                        <div class='item' style='align-self: center; padding-left: 5px; width: 270px'>
+                            Agent Quigley did not know of Oswald's prior FBI <span style='font-style: italic;color: #ff4f4f'>record</span> when he interviewed him
+                        </div>
+                    </div>
+                    <div class='row' style='height: 40px; text-align: center; height: 80px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Target
+                        </div>
+                        <div class='item' style='align-self: center; padding-left: 5px; width: 270px'>
+                            Agent Quigley did not know of Oswald's prior FBI <span style='font-style: italic;color: #ff4f4f'>disk</span> when he interviewed him
+                        </div>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS (source)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_60_1.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS (target)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_60_2.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-replacement
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_60_cat.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-T
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_60_edit.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+            <div style='display: flex; align-content: center;margin-bottom: 50px'>
+                <div style='flex: 1;'>
+                    <p class='h4'>Example 3</p>
+                    <div class='row' style='height: 40px; text-align: center; height: 80px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Source
+                        </div>
+                        <div class='item' style='align-self: center; padding-left: 5px; width: 270px'>
+                            that is <span style='font-style: italic;color: #ff4f4f'>reflected</span> in definite and comprehensive operating procedures
+                        </div>
+                    </div>
+                    <div class='row' style='height: 40px; text-align: center; height: 80px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Target
+                        </div>
+                        <div class='item' style='align-self: center; padding-left: 5px; width: 270px'>
+                            that is <span style='font-style: italic;color: #ff4f4f'>considered</span> in definite and comprehensive operating procedures
+                        </div>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS (source)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_78_1.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS (target)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_78_2.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-replacement
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_78_cat.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-T
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_78_edit.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                </div>
+                
+                <div style='flex: 1;'>
+                    <p class='h4'>Example 4</p>
+                    <div class='row' style='height: 40px; text-align: center; height: 80px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Source
+                        </div>
+                        <div class='item' style='align-self: center; padding-left: 5px; width: 270px'>
+                            to the value of twenty <span style='font-style: italic;color: #ff4f4f'>thousand</span> pounds
+                        </div>
+                    </div>
+                    <div class='row' style='height: 40px; text-align: center; height: 80px'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Target
+                        </div>
+                        <div class='item' style='align-self: center; padding-left: 5px; width: 270px'>
+                            to the value of twenty <span style='font-style: italic;color: #ff4f4f'>hundred</span> pounds
+                        </div>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS (source)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_76_1.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Grad-TTS (target)
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_76_2.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            Mel-replacement
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_76_cat.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                    <div class='row' style='text-align: center;'>
+                        <div class='item' style='width: 150px; align-self: center;'>
+                            EdiTTS-T
+                        </div>
+                        <audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 270px; height: 50px; width: 270px; height: 50px'>
+                            <source src="./assets/content/sample_76_edit.wav" class="img-fluid rounded mx-auto d-block" alt="temp">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
